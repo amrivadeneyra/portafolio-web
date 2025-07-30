@@ -8,6 +8,7 @@ interface Experience {
   location: string;
   description: string;
   technologies: string[];
+  responsibilities: string[];
   logo?: string;
 }
 
@@ -21,12 +22,19 @@ interface Experience {
 export class ExperienceComponent {
   experiences: Experience[] = [
     {
-      company: 'Triple I',
-      position: 'Practicante de desarrollo full stack',
-      period: '2023 - Presente',
-      location: 'Monterrey, Nuevo León, México',
-      description: 'Desarrollo de plataformas web completas en un entorno ágil, aplicando buenas prácticas. Participación en el desarrollo de aplicaciones empresariales utilizando tecnologías modernas.',
-      technologies: ['Angular', 'Go', 'MongoDB', 'TypeScript', 'Git'],
+      company: 'Triple i Soluciones',
+      position: 'Full Stack Developer - Trainee',
+      period: 'Febrero 2023 - Actualidad',
+      location: 'Monterrey, Nuevo León, México · En remoto',
+      description: 'Desarrollo de funcionalidades en una plataforma web utilizando Angular (TypeScript) para el frontend y Go para el backend.',
+      technologies: ['Angular', 'TypeScript', 'Go', 'MongoDB', 'Tailwind CSS', 'Flutter', 'Dart', 'Git'],
+      responsibilities: [
+        'Implementación de APIs REST y manejo de datos con MongoDB',
+        'Creación de componentes responsivos y modulares con Tailwind CSS',
+        'Participación en pruebas, control de versiones con Git y revisión de código entre pares',
+        'Apoyo en el desarrollo de una versión móvil utilizando Flutter y Dart',
+        'Colaboración en un equipo ágil, aplicando principios de arquitectura limpia y metodologías Scrum'
+      ],
       logo: 'assets/images/triplei-logo.png'
     }
   ];

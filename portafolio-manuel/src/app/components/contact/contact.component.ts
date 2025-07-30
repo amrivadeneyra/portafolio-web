@@ -21,20 +21,20 @@ export class ContactComponent {
     {
       icon: '📧',
       label: 'Email',
-      value: 'manuel@example.com',
-      link: 'mailto:manuel@example.com'
+      value: 'amanuelrivadeneyrai@gmail.com',
+      link: 'mailto:amanuelrivadeneyrai@gmail.com'
     },
     {
       icon: '🔗',
       label: 'LinkedIn',
-      value: 'linkedin.com/in/manuel-rivadeneyra',
-      link: 'https://linkedin.com/in/manuel-rivadeneyra'
+      value: 'linkedin.com/in/arivadeneyrai',
+      link: 'https://linkedin.com/in/arivadeneyrai'
     },
     {
       icon: '🐙',
       label: 'GitHub',
-      value: 'github.com/manuel-rivadeneyra',
-      link: 'https://github.com/manuel-rivadeneyra'
+      value: 'github.com/amrivadeneyra',
+      link: 'https://github.com/amrivadeneyra'
     },
     {
       icon: '📍',
