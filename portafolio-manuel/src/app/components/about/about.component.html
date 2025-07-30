@@ -1,0 +1,79 @@
+<section id="sobre-mi" class="py-20 bg-background-light dark:bg-background-dark">
+  <div class="container mx-auto px-4">
+    <h2 class="section-title text-center">Sobre mí</h2>
+    
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+      <!-- Descripción personal -->
+      <div class="space-y-6">
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          Desarrollo de plataformas web completas en un entorno ágil, aplicando buenas prácticas. 
+          Absorbo conocimientos rápidamente y busco siempre entender el "por qué", no solo el "cómo".
+        </p>
+        
+        <!-- Habilidades blandas -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-semibold text-text-light dark:text-text-dark">Habilidades personales</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div *ngFor="let skill of skills" class="card text-center">
+              <div class="text-3xl mb-2">{{ skill.icon }}</div>
+              <h4 class="font-medium text-text-light dark:text-text-dark">{{ skill.name }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stack tecnológico -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-semibold text-text-light dark:text-text-dark">Stack Tecnológico</h3>
+        
+        <!-- Tecnologías principales -->
+        <div class="space-y-4">
+          <h4 class="font-medium text-primary-light dark:text-primary-dark">Stack Principal</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark rounded-full text-sm font-medium">
+              Angular
+            </span>
+            <span class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark rounded-full text-sm font-medium">
+              Go
+            </span>
+            <span class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark rounded-full text-sm font-medium">
+              MongoDB
+            </span>
+          </div>
+        </div>
+
+        <!-- En formación -->
+        <div class="space-y-4">
+          <h4 class="font-medium text-primary-light dark:text-primary-dark">En Formación</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 rounded-full text-sm font-medium">
+              Java
+            </span>
+            <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 rounded-full text-sm font-medium">
+              Spring Boot
+            </span>
+          </div>
+        </div>
+
+        <!-- Otras tecnologías -->
+        <div class="space-y-4">
+          <h4 class="font-medium text-primary-light dark:text-primary-dark">Otros Conocimientos</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div *ngFor="let tech of technologies.slice(5)" class="flex items-center justify-between p-3 bg-card-light dark:bg-card-dark rounded-lg">
+              <span class="text-text-light dark:text-text-dark font-medium">{{ tech.name }}</span>
+              <span class="text-xs px-2 py-1 rounded-full" 
+                    [ngClass]="{
+                      'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200': tech.level === 'Avanzado',
+                      'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200': tech.level === 'Intermedio',
+                      'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200': tech.level === 'En formación',
+                      'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300': tech.level === 'Básico'
+                    }">
+                {{ tech.level }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
