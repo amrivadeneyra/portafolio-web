@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 import { ScrollService } from '../../services/scroll.service';
@@ -11,18 +11,16 @@ import { ScrollService } from '../../services/scroll.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  public readonly isDarkMode$ = this.themeService.darkMode$;
+  private readonly _themeService: ThemeService = inject(ThemeService);
+  private readonly _scrollService: ScrollService = inject(ScrollService);
 
-  constructor(
-    private readonly themeService: ThemeService,
-    private readonly scrollService: ScrollService
-  ) {}
+  public readonly isDarkMode$ = this._themeService.darkMode$;
 
   public toggleTheme(): void {
-    this.themeService.toggleTheme();
+    this._themeService.toggleTheme();
   }
 
   public scrollToSection(sectionId: string): void {
-    this.scrollService.scrollToElement({ elementId: sectionId });
+    this._scrollService.scrollToElement({ elementId: sectionId });
   }
 }

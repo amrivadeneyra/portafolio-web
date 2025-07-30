@@ -3,55 +3,67 @@
     <h2 class="section-title text-center">Experiencia</h2>
     
     <div class="max-w-4xl mx-auto space-y-8">
-      <div *ngFor="let exp of experiences" class="card">
-        <div class="flex flex-col md:flex-row gap-6">
-          <!-- Logo de la empresa -->
-          <div class="flex-shrink-0">
-            <div class="w-16 h-16 bg-primary-light dark:bg-primary-dark rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-lg">{{ exp.company.charAt(0) }}</span>
+      @for (exp of experiences; track exp.company) {
+        <div class="card">
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Logo de la empresa -->
+            <div class="flex-shrink-0">
+              @if (exp.logo) {
+                <img 
+                  [src]="exp.logo" 
+                  [alt]="'Logo de ' + exp.company"
+                  class="w-16 h-16 rounded-lg object-cover border border-gray-200 dark:border-gray-700">
+              } @else {
+                <div class="w-16 h-16 bg-primary-light dark:bg-primary-dark rounded-lg flex items-center justify-center">
+                  <span class="text-white font-bold text-lg">{{ exp.company.charAt(0) }}</span>
+                </div>
+              }
             </div>
-          </div>
 
-          <!-- Contenido de la experiencia -->
-          <div class="flex-1 space-y-4">
-            <div class="space-y-2">
-              <h3 class="text-xl font-semibold text-text-light dark:text-text-dark">
-                {{ exp.position }}
-              </h3>
-              <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                <span class="font-medium text-primary-light dark:text-primary-dark">
-                  {{ exp.company }}
-                </span>
-                <span class="hidden sm:inline">•</span>
-                <span>{{ exp.period }}</span>
-                <span class="hidden sm:inline">•</span>
-                <span>{{ exp.location }}</span>
+            <!-- Contenido de la experiencia -->
+            <div class="flex-1 space-y-4">
+              <div class="space-y-2">
+                <h3 class="text-xl font-semibold text-text-light dark:text-text-dark">
+                  {{ exp.position }}
+                </h3>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                  <span class="font-medium text-primary-light dark:text-primary-dark">
+                    {{ exp.company }}
+                  </span>
+                  <span class="hidden sm:inline">•</span>
+                  <span>{{ exp.period }}</span>
+                  <span class="hidden sm:inline">•</span>
+                  <span>{{ exp.location }}</span>
+                </div>
               </div>
-            </div>
 
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {{ exp.description }}
-            </p>
+              <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {{ exp.description }}
+              </p>
 
-            <!-- Responsabilidades -->
-            <div class="space-y-2">
-              <h4 class="font-medium text-text-light dark:text-text-dark">Responsabilidades principales:</h4>
-              <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-300">
-                <li *ngFor="let responsibility of exp.responsibilities">{{ responsibility }}</li>
-              </ul>
-            </div>
+              <!-- Responsabilidades -->
+              <div class="space-y-2">
+                <h4 class="font-medium text-text-light dark:text-text-dark">Responsabilidades principales:</h4>
+                <ul class="list-disc list-inside space-y-1 text-sm text-gray-600 dark:text-gray-300">
+                  @for (responsibility of exp.responsibilities; track responsibility) {
+                    <li>{{ responsibility }}</li>
+                  }
+                </ul>
+              </div>
 
-            <!-- Tecnologías utilizadas -->
-            <div class="flex flex-wrap gap-2">
-              <span 
-                *ngFor="let tech of exp.technologies"
-                class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark rounded-full text-sm font-medium">
-                {{ tech }}
-              </span>
+              <!-- Tecnologías utilizadas -->
+              <div class="flex flex-wrap gap-2">
+                @for (tech of exp.technologies; track tech) {
+                  <span 
+                    class="px-3 py-1 bg-primary-light/10 dark:bg-primary-dark/10 text-primary-light dark:text-primary-dark rounded-full text-sm font-medium">
+                    {{ tech }}
+                  </span>
+                }
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </section>

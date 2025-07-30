@@ -20,7 +20,7 @@ export class ExperienceService {
         'Apoyo en el desarrollo de una versión móvil utilizando Flutter y Dart',
         'Colaboración en un equipo ágil, aplicando principios de arquitectura limpia y metodologías Scrum'
       ],
-      logo: 'assets/images/triplei-logo.png'
+      logo: 'https://media.licdn.com/dms/image/v2/C560BAQGHcWHFNJRGQw/company-logo_200_200/company-logo_200_200/0/1649126926684/triple_i_soluciones_logo?e=1756944000&v=beta&t=snQRkjN9nDlQVWv_sfX7DfFhi1pmi7HUG7C9INKo6Io'
     }
   ];
 

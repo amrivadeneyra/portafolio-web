@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Project } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
@@ -12,12 +12,10 @@ import { NavigationService } from '../../services/navigation.service';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
-  public projects: readonly Project[] = [];
+  private readonly _projectService: ProjectService = inject(ProjectService);
+  private readonly _navigationService: NavigationService = inject(NavigationService);
 
-  constructor(
-    private readonly projectService: ProjectService,
-    private readonly navigationService: NavigationService
-  ) {}
+  public projects: readonly Project[] = [];
 
   public ngOnInit(): void {
     this.loadProjects();
@@ -25,11 +23,11 @@ export class ProjectsComponent implements OnInit {
 
   public openUrl(url: string): void {
     if (url) {
-      this.navigationService.openUrl({ url });
+      this._navigationService.openUrl({ url });
     }
   }
 
   private loadProjects(): void {
-    this.projects = this.projectService.getProjects();
+    this.projects = this._projectService.getProjects();
   }
 }

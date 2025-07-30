@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
@@ -17,6 +17,12 @@ import { CONTACT_CONSTANTS } from '../../constants/contact.constants';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent implements OnInit, OnDestroy {
+  private readonly _formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly _contactService: ContactService = inject(ContactService);
+  private readonly _notificationService: NotificationService = inject(NotificationService);
+  private readonly _clipboardService: ClipboardService = inject(ClipboardService);
+  private readonly _navigationService: NavigationService = inject(NavigationService);
+
   public contactForm!: FormGroup;
   public isSubmitting: boolean = false;
   public submitSuccess: boolean = false;
@@ -24,14 +30,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   public contactInfo: ContactInfo[] = [];
 
   private readonly destroy$: Subject<void> = new Subject<void>();
-
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly contactService: ContactService,
-    private readonly notificationService: NotificationService,
-    private readonly clipboardService: ClipboardService,
-    private readonly navigationService: NavigationService
-  ) {}
 
   public ngOnInit(): void {
     this.initializeComponent();
@@ -51,7 +49,7 @@ export class ContactComponent implements OnInit, OnDestroy {
 
     try {
       const formData: ContactFormData = this.contactForm.value;
-      const success: boolean = await this.contactService.sendContactForm(formData);
+      const success: boolean = await this._contactService.sendContactForm(formData);
 
       if (success) {
         this.handleSuccess();
@@ -67,27 +65,27 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   public openEmail(): void {
-    this.navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
+    this._navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
   }
 
   public openLinkedIn(): void {
-    this.navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
+    this._navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
   }
 
   public openGitHub(): void {
-    this.navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
+    this._navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
   }
 
   public async copyEmail(): Promise<void> {
-    const success: boolean = await this.clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
+    const success: boolean = await this._clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
     
     if (success) {
-      this.notificationService.showNotification({
+      this._notificationService.showNotification({
         message: 'Email copiado al portapapeles',
         type: 'success'
       });
     } else {
-      this.notificationService.showNotification({
+      this._notificationService.showNotification({
         message: 'Error al copiar el email',
         type: 'error'
       });
@@ -100,7 +98,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   private initializeForm(): void {
-    this.contactForm = this.formBuilder.group({
+    this.contactForm = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', [Validators.required, Validators.minLength(5)]],
@@ -109,7 +107,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   private loadContactInfo(): void {
-    this.contactInfo = this.contactService.getContactInfo();
+    this.contactInfo = this._contactService.getContactInfo();
   }
 
   private setSubmittingState(isSubmitting: boolean): void {

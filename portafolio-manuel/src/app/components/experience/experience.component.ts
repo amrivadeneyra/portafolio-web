@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Experience } from '../../models/experience.model';
 import { ExperienceService } from '../../services/experience.service';
@@ -11,15 +11,15 @@ import { ExperienceService } from '../../services/experience.service';
   styleUrl: './experience.component.css'
 })
 export class ExperienceComponent implements OnInit {
-  public experiences: readonly Experience[] = [];
+  private readonly _experienceService: ExperienceService = inject(ExperienceService);
 
-  constructor(private readonly experienceService: ExperienceService) {}
+  public experiences: readonly Experience[] = [];
 
   public ngOnInit(): void {
     this.loadExperiences();
   }
 
   private loadExperiences(): void {
-    this.experiences = this.experienceService.getExperiences();
+    this.experiences = this._experienceService.getExperiences();
   }
 }

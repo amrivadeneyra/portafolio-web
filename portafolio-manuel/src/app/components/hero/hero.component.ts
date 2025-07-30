@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvService } from '../../services/cv.service';
 import { NavigationService } from '../../services/navigation.service';
@@ -15,44 +15,42 @@ import { CONTACT_CONSTANTS } from '../../constants/contact.constants';
   styleUrl: './hero.component.css'
 })
 export class HeroComponent {
-  constructor(
-    private readonly cvService: CvService,
-    private readonly navigationService: NavigationService,
-    private readonly clipboardService: ClipboardService,
-    private readonly notificationService: NotificationService,
-    private readonly scrollService: ScrollService
-  ) {}
+  private readonly _cvService: CvService = inject(CvService);
+  private readonly _navigationService: NavigationService = inject(NavigationService);
+  private readonly _clipboardService: ClipboardService = inject(ClipboardService);
+  private readonly _notificationService: NotificationService = inject(NotificationService);
+  private readonly _scrollService: ScrollService = inject(ScrollService);
 
   public downloadCV(): void {
-    this.cvService.downloadCV();
+    this._cvService.downloadCV();
   }
 
   public openContact(): void {
-    this.scrollService.scrollToElement({ elementId: 'contacto' });
+    this._scrollService.scrollToElement({ elementId: 'contacto' });
   }
 
   public openEmail(): void {
-    this.navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
+    this._navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
   }
 
   public openLinkedIn(): void {
-    this.navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
+    this._navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
   }
 
   public openGitHub(): void {
-    this.navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
+    this._navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
   }
 
   public async copyEmail(): Promise<void> {
-    const success: boolean = await this.clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
+    const success: boolean = await this._clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
     
     if (success) {
-      this.notificationService.showNotification({
+      this._notificationService.showNotification({
         message: 'Email copiado al portapapeles',
         type: 'success'
       });
     } else {
-      this.notificationService.showNotification({
+      this._notificationService.showNotification({
         message: 'Error al copiar el email',
         type: 'error'
       });
