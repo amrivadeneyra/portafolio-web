@@ -10,10 +10,12 @@
           Frontend
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('frontend')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('frontend'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
 
@@ -24,10 +26,12 @@
           Backend
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('backend')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('backend'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
 
@@ -38,10 +42,12 @@
           Base de Datos
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('database')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('database'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
 
@@ -52,10 +58,12 @@
           Herramientas
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('tools')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('tools'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
 
@@ -66,10 +74,12 @@
           Móvil
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('mobile')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('mobile'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
 
@@ -80,10 +90,12 @@
           En Aprendizaje
         </h3>
         <div class="grid grid-cols-2 gap-4">
-          <div *ngFor="let tech of getTechnologiesByCategory('learning')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
-            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
-          </div>
+          @for (tech of getTechnologiesByCategory('learning'); track tech.name) {
+            <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+              <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+            </div>
+          }
         </div>
       </div>
     </div>
