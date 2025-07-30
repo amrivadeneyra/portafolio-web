@@ -11,7 +11,7 @@
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('frontend')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconSvg(tech.icon)"></div>
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
             <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
           </div>
         </div>
@@ -25,7 +25,7 @@
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('backend')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconSvg(tech.icon)"></div>
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
             <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
           </div>
         </div>
@@ -39,7 +39,7 @@
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('database')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconSvg(tech.icon)"></div>
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
             <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
           </div>
         </div>
@@ -53,7 +53,7 @@
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('tools')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconSvg(tech.icon)"></div>
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
             <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
           </div>
         </div>
@@ -67,7 +67,7 @@
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('learning')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <div class="flex justify-center mb-2" [innerHTML]="getIconSvg(tech.icon)"></div>
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
             <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
           </div>
         </div>
