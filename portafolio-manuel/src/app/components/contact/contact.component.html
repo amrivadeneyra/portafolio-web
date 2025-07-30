@@ -24,7 +24,7 @@
                 <div class="font-medium text-text-light dark:text-text-dark">{{ info.label }}</div>
                 @if (info.link && info.label === 'Email') {
                   <button 
-                    (click)="openEmail()"
+                    (click)="copyEmail()"
                     class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer">
                     {{ info.value }}
                   </button>

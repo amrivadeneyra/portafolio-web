@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { ContactInfo, ContactFormData } from '../../models/contact.model';
 import { ContactService } from '../../services/contact.service';
+import { NotificationService } from '../../services/notification.service';
+import { ClipboardService } from '../../services/clipboard.service';
+import { NavigationService } from '../../services/navigation.service';
+import { CONTACT_CONSTANTS } from '../../constants/contact.constants';
 
 @Component({
   selector: 'app-contact',
@@ -11,20 +16,30 @@ import { ContactService } from '../../services/contact.service';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent implements OnInit, OnDestroy {
   public contactForm!: FormGroup;
   public isSubmitting: boolean = false;
   public submitSuccess: boolean = false;
   public submitError: boolean = false;
   public contactInfo: ContactInfo[] = [];
 
+  private readonly destroy$: Subject<void> = new Subject<void>();
+
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly contactService: ContactService
+    private readonly contactService: ContactService,
+    private readonly notificationService: NotificationService,
+    private readonly clipboardService: ClipboardService,
+    private readonly navigationService: NavigationService
   ) {}
 
   public ngOnInit(): void {
     this.initializeComponent();
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   public async onSubmit(): Promise<void> {
@@ -52,21 +67,31 @@ export class ContactComponent implements OnInit {
   }
 
   public openEmail(): void {
-    window.open('mailto:amanuelrivadeneyrai@gmail.com', '_blank');
+    this.navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
   }
 
   public openLinkedIn(): void {
-    window.open('https://linkedin.com/in/arivadeneyrai', '_blank');
+    this.navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
   }
 
   public openGitHub(): void {
-    window.open('https://github.com/amrivadeneyra', '_blank');
+    this.navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
   }
 
-  public copyEmail(): void {
-    navigator.clipboard.writeText('amanuelrivadeneyrai@gmail.com')
-      .then(() => console.log('Email copied to clipboard'))
-      .catch(err => console.error('Error copying email:', err));
+  public async copyEmail(): Promise<void> {
+    const success: boolean = await this.clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
+    
+    if (success) {
+      this.notificationService.showNotification({
+        message: 'Email copiado al portapapeles',
+        type: 'success'
+      });
+    } else {
+      this.notificationService.showNotification({
+        message: 'Error al copiar el email',
+        type: 'error'
+      });
+    }
   }
 
   private initializeComponent(): void {

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ContactInfo, ContactFormData, FormspreePayload } from '../models/contact.model';
+import { CONTACT_CONSTANTS } from '../constants/contact.constants';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,30 +11,30 @@ export class ContactService {
     {
       icon: '📧',
       label: 'Email',
-      value: 'amanuelrivadeneyrai@gmail.com',
-      link: 'mailto:amanuelrivadeneyrai@gmail.com'
+      value: CONTACT_CONSTANTS.EMAIL,
+      link: `mailto:${CONTACT_CONSTANTS.EMAIL}`
     },
     {
       icon: '🔗',
       label: 'LinkedIn',
-      value: 'linkedin.com/in/arivadeneyrai',
-      link: 'https://linkedin.com/in/arivadeneyrai'
+      value: `linkedin.com/in/${CONTACT_CONSTANTS.LINKEDIN_PROFILE}`,
+      link: `https://linkedin.com/in/${CONTACT_CONSTANTS.LINKEDIN_PROFILE}`
     },
     {
       icon: '🐙',
       label: 'GitHub',
-      value: 'github.com/amrivadeneyra',
-      link: 'https://github.com/amrivadeneyra'
+      value: `github.com/${CONTACT_CONSTANTS.GITHUB_USERNAME}`,
+      link: `https://github.com/${CONTACT_CONSTANTS.GITHUB_USERNAME}`
     },
     {
       icon: '📍',
       label: 'Ubicación',
-      value: 'Perú',
+      value: CONTACT_CONSTANTS.LOCATION,
       link: null
     }
   ];
 
-  private readonly formspreeEndpoint: string = 'https://formspree.io/f/xwpqqool';
+  private readonly formspreeEndpoint: string = environment.formspreeEndpoint;
 
   public getContactInfo(): ContactInfo[] {
     return [...this.contactInfoData];

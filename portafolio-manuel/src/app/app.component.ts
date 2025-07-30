@@ -27,5 +27,5 @@ import { ContactComponent } from './components/contact/contact.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'portafolio-manuel';
+  public readonly currentYear: number = new Date().getFullYear();
 }
