@@ -13,8 +13,6 @@ export class TechnologyService {
     
     // Backend
     { name: 'Go', icon: 'go', category: 'backend' },
-    { name: 'Java', icon: 'java', category: 'backend' },
-    { name: 'Spring Boot', icon: 'spring', category: 'backend' },
     
     // Database
     { name: 'MongoDB', icon: 'mongodb', category: 'database' },
@@ -23,9 +21,13 @@ export class TechnologyService {
     { name: 'Git', icon: 'git', category: 'tools' },
     { name: 'Postman', icon: 'postman', category: 'tools' },
     
-    // Mobile & Learning
-    { name: 'Flutter', icon: 'flutter', category: 'learning' },
-    { name: 'Dart', icon: 'dart', category: 'learning' }
+    // Mobile
+    { name: 'Flutter', icon: 'flutter', category: 'mobile' },
+    { name: 'Dart', icon: 'dart', category: 'mobile' },
+    
+    // Learning
+    { name: 'Java', icon: 'java', category: 'learning' },
+    { name: 'Spring Boot', icon: 'spring', category: 'learning' }
   ];
 
   private readonly iconUrls: Record<string, string> = {

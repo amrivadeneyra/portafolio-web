@@ -4,4 +4,4 @@ export interface Technology {
   category: TechnologyCategory;
 }
 
-export type TechnologyCategory = 'frontend' | 'backend' | 'database' | 'tools' | 'learning'; 
+export type TechnologyCategory = 'frontend' | 'backend' | 'database' | 'tools' | 'mobile' | 'learning'; 

@@ -21,13 +21,24 @@
             <div class="text-2xl">{{ info.icon }}</div>
             <div>
               <div class="font-medium text-text-light dark:text-text-dark">{{ info.label }}</div>
-              <a 
-                *ngIf="info.link"
-                [href]="info.link" 
-                target="_blank"
-                class="text-primary-light dark:text-primary-dark hover:underline">
+              <button 
+                *ngIf="info.link && info.label === 'Email'"
+                (click)="openEmail()"
+                class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer">
                 {{ info.value }}
-              </a>
+              </button>
+              <button 
+                *ngIf="info.link && info.label === 'LinkedIn'"
+                (click)="openLinkedIn()"
+                class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer">
+                {{ info.value }}
+              </button>
+              <button 
+                *ngIf="info.link && info.label === 'GitHub'"
+                (click)="openGitHub()"
+                class="text-primary-light dark:text-primary-dark hover:underline cursor-pointer">
+                {{ info.value }}
+              </button>
               <span *ngIf="!info.link" class="text-gray-600 dark:text-gray-300">
                 {{ info.value }}
               </span>
@@ -42,7 +53,7 @@
           Envíame un mensaje
         </h3>
         
-        <form (ngSubmit)="onSubmit()" class="space-y-6">
+        <form action="https://formspree.io/f/xayzqjqr" method="POST" class="space-y-6">
           <div>
             <label for="name" class="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
               Nombre
@@ -50,8 +61,8 @@
             <input 
               type="text" 
               id="name"
-              [(ngModel)]="contactForm.name"
               name="name"
+              [(ngModel)]="contactForm.name"
               required
               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent transition-colors duration-200">
           </div>
@@ -63,8 +74,8 @@
             <input 
               type="email" 
               id="email"
-              [(ngModel)]="contactForm.email"
               name="email"
+              [(ngModel)]="contactForm.email"
               required
               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent transition-colors duration-200">
           </div>
@@ -76,8 +87,8 @@
             <input 
               type="text" 
               id="subject"
-              [(ngModel)]="contactForm.subject"
               name="subject"
+              [(ngModel)]="contactForm.subject"
               required
               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent transition-colors duration-200">
           </div>
@@ -88,8 +99,8 @@
             </label>
             <textarea 
               id="message"
-              [(ngModel)]="contactForm.message"
               name="message"
+              [(ngModel)]="contactForm.message"
               rows="5"
               required
               class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark focus:border-transparent transition-colors duration-200 resize-none"></textarea>

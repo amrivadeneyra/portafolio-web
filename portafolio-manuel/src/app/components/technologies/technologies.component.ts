@@ -12,7 +12,7 @@ import { TechnologyService } from '../../services/technology.service';
 })
 export class TechnologiesComponent implements OnInit {
   public technologies: Technology[] = [];
-  public categories: TechnologyCategory[] = ['frontend', 'backend', 'database', 'tools', 'learning'];
+  public categories: TechnologyCategory[] = ['frontend', 'backend', 'database', 'tools', 'mobile', 'learning'];
 
   constructor(private readonly technologyService: TechnologyService) {}
 

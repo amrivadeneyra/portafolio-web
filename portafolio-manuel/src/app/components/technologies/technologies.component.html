@@ -59,11 +59,25 @@
         </div>
       </div>
 
-      <!-- Mobile & Learning -->
+      <!-- Mobile -->
       <div class="card">
         <h3 class="text-xl font-semibold text-primary-light dark:text-primary-dark mb-6 flex items-center">
           <span class="mr-2">📱</span>
-          Móvil & Aprendizaje
+          Móvil
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let tech of getTechnologiesByCategory('mobile')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <div class="flex justify-center mb-2" [innerHTML]="getIconHtml(tech.icon)"></div>
+            <div class="text-sm font-medium text-text-light dark:text-text-dark">{{ tech.name }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning -->
+      <div class="card">
+        <h3 class="text-xl font-semibold text-primary-light dark:text-primary-dark mb-6 flex items-center">
+          <span class="mr-2">📚</span>
+          En Aprendizaje
         </h3>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let tech of getTechnologiesByCategory('learning')" class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
