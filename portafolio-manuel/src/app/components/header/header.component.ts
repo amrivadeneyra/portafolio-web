@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +11,18 @@ import { ThemeService } from '../../services/theme.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  isDarkMode$ = this.themeService.darkMode$;
+  public readonly isDarkMode$ = this.themeService.darkMode$;
 
-  constructor(private themeService: ThemeService) {}
+  constructor(
+    private readonly themeService: ThemeService,
+    private readonly scrollService: ScrollService
+  ) {}
 
-  toggleTheme(): void {
+  public toggleTheme(): void {
     this.themeService.toggleTheme();
   }
 
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  public scrollToSection(sectionId: string): void {
+    this.scrollService.scrollToElement({ elementId: sectionId });
   }
 }

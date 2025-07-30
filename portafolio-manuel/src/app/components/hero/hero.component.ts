@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CvService } from '../../services/cv.service';
+import { NavigationService } from '../../services/navigation.service';
+import { ClipboardService } from '../../services/clipboard.service';
+import { NotificationService } from '../../services/notification.service';
+import { ScrollService } from '../../services/scroll.service';
+import { CONTACT_CONSTANTS } from '../../constants/contact.constants';
 
 @Component({
   selector: 'app-hero',
@@ -9,36 +15,47 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero.component.css'
 })
 export class HeroComponent {
+  constructor(
+    private readonly cvService: CvService,
+    private readonly navigationService: NavigationService,
+    private readonly clipboardService: ClipboardService,
+    private readonly notificationService: NotificationService,
+    private readonly scrollService: ScrollService
+  ) {}
+
   public downloadCV(): void {
-    // Aquí se puede implementar la descarga del CV
-    console.log('Descargando CV...');
-    // Por ahora, abrir en nueva pestaña un enlace de ejemplo
-    window.open('/assets/cv-manuel-rivadeneyra.pdf', '_blank');
+    this.cvService.downloadCV();
   }
 
   public openContact(): void {
-    // Aquí se puede implementar la apertura del formulario de contacto
-    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
+    this.scrollService.scrollToElement({ elementId: 'contacto' });
   }
 
   public openEmail(): void {
-    window.open('mailto:amanuelrivadeneyrai@gmail.com', '_blank');
+    this.navigationService.openEmail(CONTACT_CONSTANTS.EMAIL);
   }
 
   public openLinkedIn(): void {
-    window.open('https://linkedin.com/in/arivadeneyrai', '_blank');
+    this.navigationService.openLinkedIn(CONTACT_CONSTANTS.LINKEDIN_PROFILE);
   }
 
   public openGitHub(): void {
-    window.open('https://github.com/amrivadeneyra', '_blank');
+    this.navigationService.openGitHub(CONTACT_CONSTANTS.GITHUB_USERNAME);
   }
 
-  public copyEmail(): void {
-    navigator.clipboard.writeText('amanuelrivadeneyrai@gmail.com').then(() => {
-      console.log('Email copiado al portapapeles');
-      // Aquí podrías mostrar una notificación
-    }).catch(err => {
-      console.error('Error al copiar email:', err);
-    });
+  public async copyEmail(): Promise<void> {
+    const success: boolean = await this.clipboardService.copyToClipboard(CONTACT_CONSTANTS.EMAIL);
+    
+    if (success) {
+      this.notificationService.showNotification({
+        message: 'Email copiado al portapapeles',
+        type: 'success'
+      });
+    } else {
+      this.notificationService.showNotification({
+        message: 'Error al copiar el email',
+        type: 'error'
+      });
+    }
   }
 }
